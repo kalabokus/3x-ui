@@ -1,7 +1,7 @@
 # ========================================================
 # Stage: Builder
 # ========================================================
-FROM golang:1.22-alpine AS builder
+FROM golang:1.23-alpine AS builder
 WORKDIR /app
 ARG TARGETARCH
 
@@ -48,6 +48,7 @@ RUN chmod +x \
   /app/x-ui \
   /usr/bin/x-ui
 
+ENV X_UI_ENABLE_FAIL2BAN="true"
 VOLUME [ "/etc/x-ui" ]
 CMD [ "./x-ui" ]
 ENTRYPOINT [ "/app/DockerEntrypoint.sh" ]
